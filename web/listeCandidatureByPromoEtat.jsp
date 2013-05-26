@@ -35,9 +35,9 @@
                     <td>
                         <form action="ServletModifierCandidature" method="post">
                             
-                            <input type="hidden"  name="idCandidat"  value="$infos/@idEtat">
-                            <input type="hidden"  name="idEtat"  value="<x:out select="$infos/@idEtat"/>">
-                            <input type="hidden"  name="idPromotion"  value="<x:out select="$infos/@idPromotion"/>">
+                            <input type="hidden"  name="idCandidat"  value=<x:out select="$infos/@idCandidat"/> >
+                            <input type="hidden"  name="idEtat"  value=<x:out select="$infos/@idEtat"/> >
+                            <input type="hidden"  name="idPromotion"  value=<x:out select="$infos/@idPromotion"/> >
                             <input name="cal" type="submit" value="Modifier" />
                         </form>
                     </td>

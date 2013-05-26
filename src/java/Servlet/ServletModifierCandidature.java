@@ -11,12 +11,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.restlet.ext.xml.DomRepresentation;
+import org.restlet.resource.ClientResource;
+import org.w3c.dom.Document;
 
 /**
  *
  * @author Kentish
  */
 public class ServletModifierCandidature extends HttpServlet {
+    private final String PROMOTIONS = "http://localhost:8080/Candidature/promotions";
+    private final String ETATS = "http://localhost:8080/Candidature/etats";
 
     /**
      * Processes requests for both HTTP
@@ -81,6 +86,16 @@ public class ServletModifierCandidature extends HttpServlet {
         request.setAttribute("idCandidat", idCandidat);
         request.setAttribute("idEtat", idEtat);
         request.setAttribute("idPromotion", idPromotion);
+        String url1 = PROMOTIONS;
+        String url2 = ETATS;
+        ClientResource resource1 = new ClientResource(url1);
+        ClientResource resource2 = new ClientResource(url2);
+        DomRepresentation reponse1 = new DomRepresentation(resource1.get());
+        Document doc1 = reponse1.getDocument();
+        DomRepresentation reponse2 = new DomRepresentation(resource2.get());
+        Document doc2 = reponse2.getDocument();
+        request.setAttribute("dom1", doc1);
+        request.setAttribute("dom2", doc2);
         RequestDispatcher rd = request.getRequestDispatcher("modifierCandidature.jsp");
         rd.forward(request, response);
     }
