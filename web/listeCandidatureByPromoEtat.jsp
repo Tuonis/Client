@@ -20,18 +20,28 @@
             <th>Telephone</th>
             <th>Adresse</th>
             <th>Mail</th>
+            <th>Modifier</th>
 
             <x:forEach select="$dom/infosCandidature/infoCandidature" var="infos">
                 <tr>
-                    <td><x:out select="$dom/infosCandidature/@promo"/></td>
+                    <td><x:out select="$infos/@promo"/></td>
                     <td><x:out select="$infos/@dateCandidature"/></td>
                     <td><x:out select="$infos/@etat"/></td>
                     <td><x:out select="$infos/@nom"/></td>    
                     <td><x:out select="$infos/@prenom"/></td>  
                     <td><x:out select="$infos/@telephone"/></td>  
                     <td><x:out select="$infos/@adresse"/></td>  
-                    <td><x:out select="$infos/@mail"/></td>  
-                    
+                    <td><x:out select="$infos/@mail"/></td> 
+                    <td>
+                        <form action="ServletModifierCandidature" method="post">
+                            
+                            <input type="hidden"  name="idCandidat"  value="$infos/@idEtat">
+                            <input type="hidden"  name="idEtat"  value="<x:out select="$infos/@idEtat"/>">
+                            <input type="hidden"  name="idPromotion"  value="<x:out select="$infos/@idPromotion"/>">
+                            <input name="cal" type="submit" value="Modifier" />
+                        </form>
+                    </td>
+
                 </tr>
             </x:forEach>
         </table>
@@ -39,7 +49,7 @@
         <br/>
         <br/>
 
-       
+
     </body>
 </html>
 

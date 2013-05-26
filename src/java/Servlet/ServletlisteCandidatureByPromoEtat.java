@@ -23,8 +23,9 @@ import org.w3c.dom.NodeList;
  */
 public class ServletlisteCandidatureByPromoEtat extends HttpServlet {
     
-    private final String PROMOCANDIDATURE = "http://localhost:8080/WebService/candidatures/promotion=";
-    private final String ETATCANDIDATURE = "http://localhost:8080/WebService/candidatures/etat=";
+    private final String PROMOCANDIDATURE = "http://localhost:8080/Candidature/candidatures/promotion=";
+    private final String ETATCANDIDATURE = "http://localhost:8080/Candidature/candidatures/etat=";
+    private final String CANDIDATURE = "http://localhost:8080/Candidature/candidatures";
 
     /**
      * Processes requests for both HTTP
@@ -88,10 +89,13 @@ public class ServletlisteCandidatureByPromoEtat extends HttpServlet {
         String promo = request.getParameter("promo");
         String etat = request.getParameter("etat");
         String url3 = "";
-        if (!promo.equals("")) {
+        if (etat.equals("") && promo.equals("")) {
+            url3 = CANDIDATURE;
+        }
+        else if (!promo.equals("")) {
             url3 = PROMOCANDIDATURE + promo;
         }
-        if (!etat.equals("")) {
+        else if (!etat.equals("")) {
             url3 = ETATCANDIDATURE + etat;
         }
         ClientResource resource3 = null;
@@ -102,7 +106,6 @@ public class ServletlisteCandidatureByPromoEtat extends HttpServlet {
             Document doc = reponse.getDocument();
             // Le mettre en post-it de la requete pour le passer a la jsp
             //request.setAttribute("dom", doc);
-            NodeList candidatures = doc.getElementsByTagName("infoCandidature");
             request.setAttribute("dom", doc);
 
 
@@ -111,7 +114,7 @@ public class ServletlisteCandidatureByPromoEtat extends HttpServlet {
                     + exc.getStatus().getDescription() + ") : "
                     + resource3.getResponseEntity().getText());
         }
-        RequestDispatcher rd4 = request.getRequestDispatcher("listeCandidatureByCandidat.jsp");
+        RequestDispatcher rd4 = request.getRequestDispatcher("listeCandidatureByPromoEtat.jsp");
         rd4.forward(request, response);
     }
 

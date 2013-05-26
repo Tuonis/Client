@@ -32,6 +32,10 @@
         <servlet-name>ServletDispatcher</servlet-name>
         <servlet-class>Servlet.ServletDispatcher</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletModifierCandidature</servlet-name>
+        <servlet-class>Servlet.ServletModifierCandidature</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ServletDispatcher</servlet-name>
         <url-pattern>/ServletDispatcher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletModifierCandidature</servlet-name>
+        <url-pattern>/ServletModifierCandidature</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
